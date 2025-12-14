@@ -1,10 +1,28 @@
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     // CONFIGURATION: Set this if hosting on Netlify/Vercel (e.g., 'https://my-gateway-server.com')
+//     // If null, it connects to the same domain (localhost).
+//     // PASTE YOUR NGROK URL HERE (No trailing slash)
+//     // const GATEWAY_URL = 'https://YOUR-ID-HERE.ngrok-free.app';
+//     const GATEWAY_URL = 'https://serried-gauziest-tamar.ngrok-free.dev';
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    // CONFIGURATION: Set this if hosting on Netlify/Vercel (e.g., 'https://my-gateway-server.com')
-    // If null, it connects to the same domain (localhost).
-    // PASTE YOUR NGROK URL HERE (No trailing slash)
-    // const GATEWAY_URL = 'https://YOUR-ID-HERE.ngrok-free.app';
-    const GATEWAY_URL = 'https://serried-gauziest-tamar.ngrok-free.dev';
+    // 1. Your specific Ngrok URL
+    const GATEWAY_URL = 'https://serried-gauziest-tamar.ngrok-free.dev'; 
+
+    // 2. Connect with the special "Skip Warning" header
+    const socket = io(GATEWAY_URL, {
+        transportOptions: {
+            polling: {
+                extraHeaders: {
+                    "ngrok-skip-browser-warning": "69420" 
+                }
+            }
+        }
+    });
 
 
     const socket = io(GATEWAY_URL);
@@ -98,3 +116,4 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 });
+
