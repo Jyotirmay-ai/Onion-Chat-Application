@@ -1,19 +1,8 @@
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     // CONFIGURATION: Set this if hosting on Netlify/Vercel (e.g., 'https://my-gateway-server.com')
-//     // If null, it connects to the same domain (localhost).
-//     // PASTE YOUR NGROK URL HERE (No trailing slash)
-//     // const GATEWAY_URL = 'https://YOUR-ID-HERE.ngrok-free.app';
-//     const GATEWAY_URL = 'https://serried-gauziest-tamar.ngrok-free.dev';
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Your specific Ngrok URL
+    // 1. Your specific Ngrok URL (I added the one you gave me)
     const GATEWAY_URL = 'https://serried-gauziest-tamar.ngrok-free.dev'; 
 
-    // 2. Connect with the special "Skip Warning" header
+    // 2. Connect with the special "Skip Warning" header (Fixes the connection error)
     const socket = io(GATEWAY_URL, {
         transportOptions: {
             polling: {
@@ -24,10 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
-    const socket = io(GATEWAY_URL);
-
-    // UI Elements
+    // --- UI Elements ---
     const myOnionIdDisplay = document.getElementById('my-onion-id');
     const statusDisplay = document.getElementById('connection-status');
     const chatWindow = document.getElementById('chat-window');
@@ -37,20 +23,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let myIdentity = 'Anonymous';
 
+    // --- Connection Logic ---
     socket.on('connect', () => {
-        statusDisplay.textContent = 'Connected to Blind Relay';
+        console.log("✅ Connected to Server!");
+        statusDisplay.textContent = 'Connected (Ghost Mode)';
+        statusDisplay.classList.remove('offline');
         statusDisplay.classList.add('online');
+    });
+
+    socket.on('connect_error', (err) => {
+        console.error("❌ Connection Error:", err);
+        statusDisplay.textContent = 'Connection Failed';
+        statusDisplay.classList.add('offline');
     });
 
     socket.on('onion_address', (data) => {
         myOnionIdDisplay.textContent = data.address;
-        myIdentity = data.address; // Or use a generated ID
+        myIdentity = data.address; 
     });
 
     socket.on('message', (data) => {
         displayMessage(data);
     });
 
+    // --- Sending Logic ---
     sendBtn.addEventListener('click', sendMessage);
     messageInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
@@ -72,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             socket.emit('message', {
                 message: encrypted,
-                sender: 'GhostUser' // In a real app, this might be a session ID
+                sender: 'GhostUser' 
             });
 
             messageInput.value = '';
@@ -116,4 +112,3 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 });
-
