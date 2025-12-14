@@ -54,6 +54,22 @@ Before you begin, ensure you have the following installed on your "Server" machi
 
 ---
 
+## 👨‍💻 Inspect the Encryption (Frontend Only)
+
+While the backend logic remains hidden, **the frontend code (HTML/JS) is open for inspection.**
+
+I encourage developers and security enthusiasts to download the `script.js` file and audit the client-side encryption logic. 
+* **Status:** Experimental.
+* **Testing:** This encryption implementation has **not yet been rigorously penetration tested.** * **Challenge:** Feel free to download the basic files, analyze the AES implementation, and try to break it.
+
+**Found a vulnerability?**
+If you find a flaw in the encryption or have suggestions to make it stronger, I’d love to hear from you.
+
+👉 **DM me on Instagram:** [@Jyotirmay_Biswas](https://www.instagram.com/its_jyotirmay_biswas/)
+
+---
+
+
 ## ⚠️ Legal & Liability Disclaimer
 
 This project was created for **educational and portfolio purposes only**. The creator does not condone the use of this software for any illegal activities. The backend code is withheld to prevent abuse. Use the live demo responsibly.
