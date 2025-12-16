@@ -54,6 +54,14 @@ Before you begin, ensure you have the following installed on your "Server" machi
 
 ---
 
+## 🔒 Why is the Backend Code Hidden?
+
+You might notice that the core backend logic (the `app.py` and Tor configuration) is not fully exposed in this repository. **This is an intentional security decision.**
+
+Due to the powerful nature of Onion Routing and ephemeral encryption, there is a significant risk if this technology falls into the wrong hands or is used for malicious purposes. To prevent misuse, I have kept the "Ghost Engine" closed-source for now.
+
+---
+
 ## 👨‍💻 Inspect the Encryption (Frontend Only)
 
 While the backend logic remains hidden, **the frontend code (HTML/JS) is open for inspection.**
@@ -75,12 +83,6 @@ If you find a flaw in the encryption or have suggestions to make it stronger, I�
 This project was created for **educational and portfolio purposes only**. The creator does not condone the use of this software for any illegal activities. The backend code is withheld to prevent abuse. Use the live demo responsibly.
 
 ---
-
-## 🔒 Why is the Backend Code Hidden?
-
-You might notice that the core backend logic (the `app.py` and Tor configuration) is not fully exposed in this repository. **This is an intentional security decision.**
-
-Due to the powerful nature of Onion Routing and ephemeral encryption, there is a significant risk if this technology falls into the wrong hands or is used for malicious purposes. To prevent misuse, I have kept the "Ghost Engine" closed-source for now.
 
 ### 🧪 Want to Try It?
 I am looking for responsible testers and developers who want to see the Ghost Protocol in action.
